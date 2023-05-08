@@ -1,0 +1,10 @@
+print("importing libraries...")
+import requests
+print("fetching data...")
+data = requests.get("http://fitkodelasvoje.cf/raw.txt")
+print("! RAW DATA CONTENT:", data.content)
+data = str(data.content)
+data = data.split(",")
+print(data[0])
+print(data[1])
+print(data[2])
