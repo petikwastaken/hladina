@@ -1,7 +1,12 @@
 from urllib.request import urlopen
 from flask import Flask, jsonify
-#import 1. libraty that can fetch website's code 2. flask basically the whole server/api
+import datetime
+from flask_cors import CORS, cross_origin
+#import 1. libraty that can fetch website's code 2. flask basically the whole server/api 3. vedomosti o času
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+
 #defining the app before startup
 @app.route('/', methods=['GET'])
 def get_data():
@@ -11,12 +16,15 @@ def get_data():
     f = f[39].split("cm")
     f  = str(f[0])
     print(f) # for debugging prints in to the console content that will be sent to the client
+    cas = datetime.datetime.now()
+    cas = cas.strftime("%d.%m.%y %H:%M:%S")
     data = {
-        'hloubka': f
-    }
+        'hladina': f,
+        'cas': cas,
+        }
 #setting up the json that will be sent
     return jsonify(data)
 # sending the json back to the clientcm
 if __name__ == '__main__':
-    app.run()
+    app.run(host="0.0.0.0",port=80)
     #running the app
