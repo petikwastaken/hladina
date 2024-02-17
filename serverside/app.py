@@ -2,7 +2,7 @@ from urllib.request import urlopen
 from flask import Flask, jsonify
 import datetime
 from flask_cors import CORS, cross_origin
-#import 1. libraty that can fetch website's code 2. flask basically the whole server/api 3. vedomosti o času
+#import 1. library that can fetch website's code 2. flask basically the whole server/api 3. tells time 4. fixes CORS problems
 app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
